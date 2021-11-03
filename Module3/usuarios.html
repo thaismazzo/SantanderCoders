@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Usuários Handler</title>
+        <meta charset="utf-8" />
+    </head>
+    <header>
+        <h3>Usuários</h3>
+
+    </header>
+    <body>
+        <h4>Novo Usuário</h4>
+        <input type="text" id="newUser">
+        <button id="addNewUser">Novo Usuário</button>
+        <div></div>
+        <script>
+            const buttonNewUser = document.querySelector('button#addNewUser')
+            const container = document.querySelector('div')
+            const input = document.querySelector('input#newUser')
+            
+            buttonNewUser.onclick = function(){
+                const li = document.createElement('li')  
+                const remove = document.createElement('BUTTON')
+                remove.innerHTML = 'Deletar'
+                
+                remove.addEventListener("click", function(){
+                this.parentElement.removeChild(li)
+                this.parentElement.removeChild(remove)
+                });                
+                
+                            
+                li.textContent = input.value
+                container.append(li)
+                container.append(remove)
+                input.value = ''
+                
+            }
+            
+
+        </script>
+    </body>
+
+    <footer>
+
+    </footer>
+</html>

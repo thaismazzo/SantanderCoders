@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <title>Promises(Thaís Mazzo da Costa)</title>
+    <meta charset="utf-8" />
+  </head>
+  <header>
+    <h3>Promises</h3>
+  </header>
+  <body>
+    <button id="createList">Gerar Lista</button>
+    <div></div>
+    <script async>
+      const button = document.querySelector("#createList");
+      const container = document.querySelector("div");
+
+      button.onclick = function () {
+        container.textContent = '';
+        manage_promises();
+      };
+
+      function create_random_array() {
+        let n = Math.trunc(Math.random() * 10);
+        return n;
+      }
+
+      function create_random_numbers() {
+        let n = create_random_array();
+        let array = [];
+        for (var i = 0; i <= n; i++) {
+          let a = Math.random() * 10;
+          array[i] = a;
+        }
+        return array;
+      }
+
+      function connectAll() {
+        const array = create_random_numbers();
+        return array;
+      }
+
+      function print_values(array_with_values) {
+        
+        for (let i=0;i<array_with_values.length;i++){
+            const li = document.createElement("li");
+            li.textContent = array_with_values[i];
+            container.append(li)
+        }
+        
+      }
+
+      function manage_promises() {
+         // alert('oi')
+        let promise1 = new Promise((resolve, reject) =>
+          setTimeout(resolve, 1000, connectAll())
+        );
+        let promise2 = new Promise((resolve, reject) =>
+          setTimeout(resolve, 2000, connectAll())
+        );
+        let promise3 = new Promise((resolve, reject) =>
+          setTimeout(resolve, 3000, connectAll())
+        );
+
+        let array_promises = [promise1, promise2, promise3];
+
+        Promise.allSettled(array_promises).then((result) => {
+         result.forEach(
+             element => print_values(element['value']))
+         ;
+        });
+      }
+    </script>
+  </body>
+
+  <footer></footer>
+</html>

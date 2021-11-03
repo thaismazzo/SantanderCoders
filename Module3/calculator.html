@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Calculatr with HTML and JS</title>
+        <meta charset="utf-8" />
+    </head>
+    <header>
+        <h3>Calculadora</h3>
+    </header>
+    <body>
+        
+        <input type="radio" name="operacoes" value="soma">Soma
+        <input type="radio" name="operacoes" value="subtracao">Subtração
+        <input type="radio" name="operacoes" value="multiplicacao">Multiplicação
+        <input type="radio" name="operacoes" value="divisao">Divisão
+               
+        </br>
+        Total: <span id="resultado">0</span>
+        </br>       
+        <input type="number" id="input">
+        
+        
+        <button id="enter">Enter</button>
+        
+        
+        <button id="equals">Equals</button>
+        <button id="reset">Clean Total</button>
+
+        <script>
+            // acho que o problema aqui é como estou chamando as variáveis. Ver se estou chamando da forma correta
+            let totalSpan = document.querySelector('span#resultado')
+            const inputNumber = document.querySelector('input#input')
+            const enterButton = document.querySelector('button#enter')
+            const equalsButton = document.querySelector('button#equals')
+            const selecionado = document.getElementsByName('operacoes');
+            const reset = document.querySelector('button#reset')
+            const soma = document.querySelector('operations soma') // NAO SEI COMO CHAMAR ESSAS COISAS
+            let numbers = []
+            let total = 0
+            enterButton.onclick = function() {
+                numbers.push(+inputNumber.value);
+                inputNumber.value = '';
+            }
+            reset.onclick = function(){
+                numbers = [];
+                totalSpan.innerText = 0;
+            }
+                        
+            equalsButton.onclick = function(){
+                
+                for (var i =0, length = selecionado.length; i< length; i++){
+                    if (selecionado[i].checked){
+                        if (selecionado[i].value==="soma"){
+                            let result = numbers.reduce((acc, prv)=> acc + prv)
+                            alert(result)
+                            totalSpan.innerText = result;
+                        }
+                        if (selecionado[i].value==="subtracao"){
+                            let result = numbers.reduce((acc, prv)=> acc - prv)
+                            alert(result)
+                            totalSpan.innerText = result;
+                        }
+                        if (selecionado[i].value==="multiplicacao"){
+                            let result = numbers.reduce((acc, prv)=> acc*prv)
+                            alert(result)
+                            totalSpan.innerText = result;
+                        }
+                        if (selecionado[i].value==="divisao"){
+                            let result = numbers.reduce((acc, prv)=> acc/prv)
+                            alert(result)
+                            totalSpan.innerText = result;
+                        }
+                        
+                    }
+                }
+
+            }
+            
+        </script>
+    </body>
+
+    <footer>
+
+    </footer>
+</html>
