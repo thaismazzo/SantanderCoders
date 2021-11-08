@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Drag Race (Thaís Mazzo da Costa)append</title>
+        <meta charset="utf-8" />
+    </head>
+    <header>
+        <h3>Drag Race - Thaís Mazzo da Costa</h3>
+
+    </header>
+    <body>
+        <form>
+            Competidor: <input type="text" name="player">
+            <!-- <button type="submit" id = "submit">Submit Name</button> -->
+
+        </form>
+        <button id="start">Iniciar cronometragem</button>
+        <button id="end">Parar cronometragem</button>
+        
+        <div></div>
+
+
+        <script>
+            
+            const buttonStart = document.querySelector('button#start')
+            const buttonEnd = document.querySelector('button#end')
+            const container = document.querySelector('div')            
+            const forms = document.querySelector('form')
+            
+
+            let hour = 0;
+            let minute = 0;
+            let second = 0;
+            let millisecond = 0;
+            let cron;
+            buttonStart.onclick = function(){
+                cron = setInterval(() => { timer(); }, 10);
+            }
+            buttonEnd.onclick = function(){
+                clearInterval(cron);
+                const li = document.createElement('li')
+                let usuario = forms.player.value
+                li.textContent = `Usuario: ${usuario} -> Horas: ${hour}, Minutos :${minute},Segundos: ${second}`
+                container.append(li)                
+                forms.player.value = ''
+            }
+            function timer() {
+            if ((millisecond += 10) == 1000) {
+                millisecond = 0;
+                second++;
+            }
+            if (second == 60) {
+                second = 0;
+                minute++;
+            }
+            if (minute == 60) {
+                minute = 0;
+                hour++;
+            }}
+
+
+           
+
+        </script>
+    </body>
+
+    <footer>
+
+    </footer>
+</html>
